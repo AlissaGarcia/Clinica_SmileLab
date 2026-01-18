@@ -4,6 +4,6 @@ from rolepermissions.decorators import has_permission_decorator
 
 @has_permission_decorator('cadastrar_dentistas')
 def cadastrar_dentistas(request):
-    return HttpResponse('Test')
+    return render(request, 'cadastrar_dentistas.html')
 
 # Create your views here.
