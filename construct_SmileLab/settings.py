@@ -25,9 +25,24 @@ SECRET_KEY = "django-insecure-w0@gz9=x)lwfe03!h4e_f+9o30@c6t&)9*wl&8gy15ld82aeka
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.github.dev',
+    '.app.github.dev',
+    'improved-space-broccoli-w6v74vqjv4x29w9v-8000.app.github.dev',
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.github.dev',
+    'https://*.app.github.dev',
+    'https://improved-space-broccoli-w6v74vqjv4x29w9v-8000.app.github.dev',
+]
 
+# Para HTTPS no Codespaces
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+#Ajuste para funcionar no github
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "usuarios"
+    "usuarios",
+    "rolepermissions",
 ]
 
 MIDDLEWARE = [
@@ -116,3 +132,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Config auth
+
+AUTH_USER_MODEL = "usuarios.Users"
+
+
+# Role permissions
+
+ROLEPERMISSIONS_MODULE = 'construct_SmileLab.roles'
