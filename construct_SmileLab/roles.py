@@ -1,7 +1,7 @@
 from rolepermissions.roles import AbstractUserRole
 
 class Admin(AbstractUserRole):
-    avaible_permissions = {
+    available_permissions = {
         'cadastrar_dentistas': True,
         'cadastrar_secretaria': True,
         'cadastrar_serviços': True,
@@ -10,7 +10,7 @@ class Admin(AbstractUserRole):
 
 
 class Dentista(AbstractUserRole):
-    avaible_permissions = {
+    available_permissions = {
         'ver_agenda_individual': True,
         'confirmacao_de_consulta': True,
         'inserir_historico_paciente':True,
@@ -18,7 +18,7 @@ class Dentista(AbstractUserRole):
     }
 
 class Secretaria(AbstractUserRole):
-    avaible_permissions = {
+    available_permissions = {
         'cadastrar_paciente':True,
         'agendar_paciente': True,
         'confirmar_pagamento':True,
