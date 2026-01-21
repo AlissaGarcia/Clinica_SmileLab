@@ -10,6 +10,6 @@ def define_permissoes(sender, instance, created, **kwargs):
         if instance.cargo == "D":
             assign_role(instance, "dentista")
         elif instance.cargo =="S":
-            assign_role(instance, 'secretaria')
+            assign_role(instance, 'secretario')
         elif instance.cargo =="A":
             assign_role(instance, 'admin')

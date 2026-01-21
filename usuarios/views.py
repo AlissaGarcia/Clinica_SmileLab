@@ -58,5 +58,38 @@ def excluir_usuario(request, id):
     messages.add_message(request, messages.SUCCESS, 'Dentista Excluido com Sucesso!')
     return redirect(reverse('cadastrar_dentistas'))
 
+@has_permission_decorator('cadastrar_secretarios')
+def cadastrar_secretarios(request):
+    if request.method == "GET":
+        secretarios = Users.objects.filter(cargo="S")
+        return render(request, 'cadastrar_secretarios.html', {'secretarios':secretarios})
+    if request.method == "POST":
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        user = Users.objects.filter(email=email)
+        if user.exists():
+
+           
+            messages.add_message(request, messages.ERROR, 'Esse email já existe!')
+            return redirect(reverse('cadastrar_secretarios'))
+        
+        user = Users.objects.create_user(username=email, email=email, password=senha, cargo='S')
+
+        messages.add_message(request, messages.SUCCESS, 'Secretário(a) Criado com Sucesso!')
+        return redirect(reverse('cadastrar_secretarios'))
+
+
+
+
+
+@has_permission_decorator('cadastrar_secretario')
+def excluir_usuario(request, id):
+    secretario= get_object_or_404(Users, id=id)
+    secretario.delete()
+    messages.add_message(request, messages.SUCCESS, 'Secretário(a) Excluido com Sucesso!')
+    return redirect(reverse('cadastrar_secretarios'))
+
+
 
 # Create your views here.
