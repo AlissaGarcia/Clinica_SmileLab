@@ -5,6 +5,7 @@ from .models import Users
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import auth
+from django.shortcuts import get_object_or_404
 
 @has_permission_decorator('cadastrar_dentistas')
 def cadastrar_dentistas(request):
@@ -49,8 +50,11 @@ def logout(request):
     request.session.flush()
     return redirect(reverse('login'))
 
+@has_permission_decorator('cadastrar_dentista')
 def excluir_usuario(request, id):
-    return HttpResponse(id)
+    dentista= get_object_or_404(Users, id=id)
+    dentista.delete()
+    return redirect(reverse('cadastrar_dentistas'))
 
 
 # Create your views here.
