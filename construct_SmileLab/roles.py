@@ -3,23 +3,28 @@ from rolepermissions.roles import AbstractUserRole
 class Admin(AbstractUserRole):
     available_permissions = {
         'cadastrar_dentistas': True,
+        'cadastrar_dentista': True,
         'cadastrar_secretarios': True,
-        'cadastrar_serviços': True,
-        'cadastrar_paciente': True,
+        'cadastrar_secretario': True,
+
+        'dashboard_secretaria': True,
+        'dashboard_dentista': True,
+
+        'cadastrar_pacientes': True,
+        'criar_agendamentos': True,
     }
 
 
 class Dentista(AbstractUserRole):
     available_permissions = {
-        'ver_agenda_individual': True,
-        'confirmacao_de_consulta': True,
-        'inserir_historico_paciente':True,
-        'ver_historico_paciente': True,
+        'dashboard_dentista': True,
+        'criar_agendamentos': False,   
     }
+
 
 class Secretario(AbstractUserRole):
     available_permissions = {
-        'cadastrar_paciente':True,
-        'agendar_paciente': True,
-        'confirmar_pagamento':True,
+        'dashboard_secretaria': True,
+        'cadastrar_pacientes': True,
+        'criar_agendamentos': True,
     }
