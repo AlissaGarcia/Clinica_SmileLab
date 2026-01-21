@@ -4,6 +4,17 @@
 <br>
 <h1>Cadastro de Dentistas</h1>
 
+    {% if messages %}
+
+        <br>
+        {% for message in messages  %}
+        
+        <div class="alert {{message.tags}}">{{message}}</div>
+
+        {% endfor %}
+
+    {% endif %}
+
 <div class = "container">
 
     <form action = "{% url 'cadastrar_dentistas' %}" method="POST"> {% csrf_token %}
@@ -38,7 +49,13 @@
       <th scope="row">{{dentista.first_name}}</th>
         <td>{{dentista.last_name}}</td>
         <td>{{dentista.email}}</td>
-        <td>{{dentista.last_login}}</td>
+        <td>{% if not dentista.last_login %}
+                Nunca logou
+            {% else %}
+                 {{dentista.last_login}}
+            {% endif %}
+            
+           </td>
         <td><a href="{%url 'excluir_usuario' dentista.id %}" class="btn btn-danger">Excluir</a></td>
     </tr>
     {% endfor %}
