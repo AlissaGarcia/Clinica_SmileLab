@@ -1,24 +1,49 @@
 {% extends 'base.html' %}
 
 {% block 'body' %}
+<br>
+<h1>Cadastro de Dentistas</h1>
 
 <div class = "container">
 
     <form action = "{% url 'cadastrar_dentistas' %}" method="POST"> {% csrf_token %}
-        <br>
         <label>E-mail</label>
         <input type="email" placeholder="Digite seu E-mail..." name="email" class="form-control">
 
         <br>
         <label>Senha</label>
         <input type="password" placeholder="Digite sua Senha..." name="senha" class="form-control">
-    
         <br>
         <input type="submit" class="btn btn-success">
+        <br>
     </form>
 
-
 </div>
+
+ <hr>
+
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Sobrenome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Último Login</th>
+      <th scope="col">Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for dentista in dentistas %}
+    <tr>
+      <th scope="row">{{dentista.first_name}}</th>
+        <td>{{dentista.last_name}}</td>
+        <td>{{dentista.email}}</td>
+        <td>{{dentista.last_login}}</td>
+        <td><a href="{%url 'excluir_usuario' dentista.id %}" class="btn btn-danger">Excluir</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 
 {% endblock %}

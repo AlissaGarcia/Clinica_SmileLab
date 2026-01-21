@@ -9,7 +9,8 @@ from django.contrib import auth
 @has_permission_decorator('cadastrar_dentistas')
 def cadastrar_dentistas(request):
     if request.method == "GET":
-        return render(request, 'cadastrar_dentistas.html')
+        dentistas = Users.objects.filter(cargo="D")
+        return render(request, 'cadastrar_dentistas.html', {'dentistas':dentistas})
     if request.method == "POST":
         email = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -47,5 +48,9 @@ def login (request):
 def logout(request):
     request.session.flush()
     return redirect(reverse('login'))
+
+def excluir_usuario(request, id):
+    return HttpResponse(id)
+
 
 # Create your views here.
