@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block 'body' %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'dashboard_secretaria' %}">Painel da Secretária</a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cadastrar_pacientes' %}">Cadastrar Paciente</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'agendamentos' %}">Realizar Agendamento</a>
+        </li>
+
+      </ul>
+
+      <a href="{% url 'sair' %}" class="btn btn-danger">Sair</a>
+    </div>
+  </div>
+</nav>
+
+<br>
+
+<div class="container">
+  <h2>Agendamentos</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <!-- FORMULÁRIO -->
+  <form action="{% url 'agendamentos' %}" method="POST">
+    {% csrf_token %}
+
+    <label>Paciente</label>
+    <select name="paciente" class="form-control" required>
+      <option value="">Selecione um paciente</option>
+      {% for paciente in pacientes %}
+        <option value="{{ paciente.id }}">{{ paciente.nome }} - {{ paciente.cpf }}</option>
+      {% endfor %}
+    </select>
+
+    <br>
+
+    <label>Dentista</label>
+    <select name="dentista" class="form-control" required>
+      <option value="">Selecione um dentista</option>
+      {% for dentista in dentistas %}
+        <option value="{{ dentista.id }}">{{ dentista.email }}</option>
+      {% endfor %}
+    </select>
+
+    <br>
+
+    <label>Data</label>
+    <input type="date" name="data" class="form-control" required>
+
+    <br>
+
+    <label>Horário</label>
+    <input type="time" name="horario" class="form-control" required>
+
+    <br>
+
+    <label>Procedimento</label>
+    <input type="text" name="procedimento" class="form-control" required>
+
+    <br>
+
+    <input type="submit" value="Agendar" class="btn btn-success">
+  </form>
+
+  <hr>
+
+  <!-- LISTA -->
+  <h4>Agendamentos cadastrados</h4>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Dentista</th>
+        <th>Data</th>
+        <th>Horário</th>
+        <th>Procedimento</th>
+        <th>Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for agendamento in agendamentos %}
+      <tr>
+        <td>{{ agendamento.paciente.nome }}</td>
+        <td>{{ agendamento.dentista.email }}</td>
+        <td>{{ agendamento.data }}</td>
+        <td>{{ agendamento.horario }}</td>
+        <td>{{ agendamento.procedimento }}</td>
+        <td>
+          <a href="{% url 'excluir_agendamento' agendamento.id %}" class="btn btn-danger btn-sm">
+            Excluir
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}
