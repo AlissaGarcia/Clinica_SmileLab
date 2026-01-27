@@ -15,9 +15,6 @@ class UsersAdmin(admin_auth_django.UserAdmin):
     )
 
 
-# =========================
-# PACIENTE
-# =========================
 
 @admin.register(Paciente)
 class PacienteAdmin(admin.ModelAdmin):
@@ -27,9 +24,6 @@ class PacienteAdmin(admin.ModelAdmin):
     ordering = ('nome',)
 
 
-# =========================
-# AGENDAMENTO
-# =========================
 
 @admin.register(Agendamento)
 class AgendamentoAdmin(admin.ModelAdmin):

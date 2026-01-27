@@ -23,6 +23,7 @@ urlpatterns = [
     path('agendamentos/', views.agendamentos, name='agendamentos'),
     path('agendamentos/excluir/<int:id>/', views.excluir_agendamento, name='excluir_agendamento'),
     
+    
     path('admin-dashboard/', views.dashboard_admin, name='dashboard_admin'),
 
 ]
