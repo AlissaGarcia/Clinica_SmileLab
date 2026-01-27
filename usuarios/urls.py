@@ -6,7 +6,9 @@ urlpatterns = [
     # ================= USUÁRIOS =================
     path('cadastrar_dentistas/', views.cadastrar_dentistas, name='cadastrar_dentistas'),
     path('cadastrar_secretarios/', views.cadastrar_secretarios, name='cadastrar_secretarios'),
-    path('excluir_usuario/<int:id>/', views.excluir_usuario, name="excluir_usuario"),
+    path('excluir_dentista/<int:id>/', views.excluir_dentista, name='excluir_dentista'),
+    path('excluir_secretario/<int:id>/', views.excluir_secretario, name='excluir_secretario'),
+
 
     path('login/', views.login, name="login"),
     path('sair/', views.logout, name="sair"),

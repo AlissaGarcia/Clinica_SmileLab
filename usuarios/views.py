@@ -73,12 +73,11 @@ def cadastrar_dentistas(request):
 
 
 @has_permission_decorator('cadastrar_dentista')
-def excluir_usuario(request, id):
+def excluir_dentista(request, id):
     dentista = get_object_or_404(Users, id=id, cargo='D')
     dentista.delete()
     messages.success(request, 'Dentista excluído com sucesso!')
     return redirect(reverse('cadastrar_dentistas'))
-
 
 
 # SECRETÁRIOS
@@ -104,11 +103,14 @@ def cadastrar_secretarios(request):
 
 
 @has_permission_decorator('cadastrar_secretario')
-def excluir_usuario(request, id):
+def excluir_secretario(request, id):
     secretario = get_object_or_404(Users, id=id, cargo='S')
     secretario.delete()
     messages.success(request, 'Secretário(a) excluído com sucesso!')
     return redirect(reverse('cadastrar_secretarios'))
+
+
+
 
 
 
