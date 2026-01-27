@@ -9,6 +9,8 @@ class Admin(AbstractUserRole):
 
         'dashboard_secretaria': True,
         'dashboard_dentista': True,
+        'dashboard_admin': True,
+
 
         'cadastrar_pacientes': True,
         'criar_agendamentos': True,
