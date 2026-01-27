@@ -7,9 +7,9 @@ from .models import Users, Paciente, Agendamento
 from rolepermissions.decorators import has_role_decorator
 
 
-# =========================
+
 # LOGIN / LOGOUT
-# =========================
+
 
 def login(request):
     if request.method == "GET":
@@ -49,9 +49,9 @@ def logout(request):
     return redirect(reverse('login'))
 
 
-# =========================
+
 # DENTISTAS
-# =========================
+
 
 @has_permission_decorator('cadastrar_dentistas')
 def cadastrar_dentistas(request):
@@ -73,16 +73,15 @@ def cadastrar_dentistas(request):
 
 
 @has_permission_decorator('cadastrar_dentista')
-def excluir_usuario(request, id):
+def excluir_dentista(request, id):
     dentista = get_object_or_404(Users, id=id, cargo='D')
     dentista.delete()
     messages.success(request, 'Dentista excluído com sucesso!')
     return redirect(reverse('cadastrar_dentistas'))
 
 
-# =========================
 # SECRETÁRIOS
-# =========================
+
 
 @has_permission_decorator('cadastrar_secretarios')
 def cadastrar_secretarios(request):
@@ -104,16 +103,19 @@ def cadastrar_secretarios(request):
 
 
 @has_permission_decorator('cadastrar_secretario')
-def excluir_usuario(request, id):
+def excluir_secretario(request, id):
     secretario = get_object_or_404(Users, id=id, cargo='S')
     secretario.delete()
     messages.success(request, 'Secretário(a) excluído com sucesso!')
     return redirect(reverse('cadastrar_secretarios'))
 
 
-# =========================
+
+
+
+
 # DASHBOARDS
-# =========================
+
 
 @has_permission_decorator('dashboard_secretaria')
 def dashboard_secretaria(request):
@@ -133,9 +135,9 @@ def dashboard_dentista(request):
     })
 
 
-# =========================
+
 # PACIENTES
-# =========================
+
 
 @has_permission_decorator('cadastrar_pacientes')
 def cadastrar_pacientes(request):
@@ -176,9 +178,9 @@ def excluir_paciente(request, id):
     return redirect(reverse('cadastrar_pacientes'))
 
 
-# =========================
+
 # AGENDAMENTOS
-# =========================
+
 
 @has_permission_decorator('criar_agendamentos')
 def agendamentos(request):

@@ -38,6 +38,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.github.dev',
     'https://*.app.github.dev',
     'https://improved-space-broccoli-w6v74vqjv4x29w9v-8000.app.github.dev',
+    'https://*.app.github.dev',
 ]
 
 # Para HTTPS no Codespaces

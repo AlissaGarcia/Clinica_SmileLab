@@ -7,9 +7,6 @@ class Users(AbstractUser):
     cargo = models.CharField(max_length=1, choices=choices_cargo)
 
 
-# =========================
-# PACIENTE 
-# =========================
 
 class Paciente(models.Model):
     nome = models.CharField(max_length=100)
@@ -22,10 +19,6 @@ class Paciente(models.Model):
     def __str__(self):
         return self.nome
 
-
-# =========================
-# AGENDAMENTO
-# =========================
 
 class Agendamento(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
