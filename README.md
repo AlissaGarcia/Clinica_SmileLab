@@ -1,6 +1,6 @@
 # 🦷 SmileLab — Sistema Web para Gestão de Clínica Odontológica
 
-## Descrição Geral
+## Descrição Geral do Software
 
 O **SmileLab** é um sistema web desenvolvido para apoiar a gestão de uma clínica odontológica, oferecendo funcionalidades para administração de usuários, pacientes, dentistas e agendamentos. O sistema foi **projetado e implementado exclusivamente sob uma Arquitetura de Software em Camadas**, garantindo separação clara de responsabilidades, organização do código, facilidade de manutenção e possibilidade de evolução futura.
 
